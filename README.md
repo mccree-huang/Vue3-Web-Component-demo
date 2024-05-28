@@ -1,7 +1,7 @@
 Web Components demo project
 Vue3 + Vite + TypeScript + vaadin components  
 
-这是一个Vue3+Vite+Typescript项目，将整个项目打包成一个web component组件 最终输出一个 my-app的自定义标签，如果route属性
+这是一个Vue3+Vite+Typescript项目，将整个项目打包成一个web component组件 最终输出一个 my-app的自定义标签，使用route属性
 呈现不同的页面内容，为了开发方便，引入了名为vaadin的第三方的web components库
 
 If your requirement is to package the entire Vue project into a single web component,
