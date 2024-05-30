@@ -9,15 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21",
     "@vaadin/vaadin": "^24.3.12",
-    "@vaadin/vaadin-lumo-styles": "^24.3.13"
+    "@vaadin/vaadin-lumo-styles": "^24.3.13",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vite-plugin-compression": "^0.5.1",
     "vue-tsc": "^2.0.6"
   }
 }

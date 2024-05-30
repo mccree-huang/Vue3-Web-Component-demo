@@ -1,6 +1,5 @@
 import { createApp, defineCustomElement } from 'vue';
 import App from './App.vue';
-import '@vaadin/vaadin';
 import '@vaadin/vaadin-lumo-styles';
 import {register} from './registerMyComponent'
 // 创建一个 Vue 应用
