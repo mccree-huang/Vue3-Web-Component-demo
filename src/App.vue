@@ -5,12 +5,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import '@vaadin/vaadin-lumo-styles';
-
-// 导入你的子组件路径
-// const AboutPage = defineAsyncComponent(() => import("./pages/AboutPage.vue"));
-// const HomePage = defineAsyncComponent(() => import("./pages/HomePage.vue"));
-
 import HomePage from "./pages/HomePage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 

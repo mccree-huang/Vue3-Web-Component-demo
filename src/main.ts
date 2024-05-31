@@ -1,15 +1,10 @@
-import { createApp, defineCustomElement } from 'vue';
-import App from './App.vue';
-// import {register} from './registerMyComponent'
-// 创建一个 Vue 应用
+import { createApp, defineCustomElement } from "vue";
+import App from "./App.vue";
 const app = createApp(App);
-
+import "@vaadin/vaadin-lumo-styles";
 // 将 Vue 组件转换为自定义元素
 const MyAppElement = defineCustomElement(App);
-// register()
-
 // 注册自定义元素
-customElements.define('my-app', MyAppElement);
-
+customElements.define("my-app", MyAppElement);
 // 挂载 Vue 应用
-app.mount('#app');
+app.mount("#app");
