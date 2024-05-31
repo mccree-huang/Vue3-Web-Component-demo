@@ -5,20 +5,28 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-interface Props {
-  route?: string;
-}
+import '@vaadin/vaadin-lumo-styles';
+
+// 导入你的子组件路径
+// const AboutPage = defineAsyncComponent(() => import("./pages/AboutPage.vue"));
+// const HomePage = defineAsyncComponent(() => import("./pages/HomePage.vue"));
+
+import HomePage from "./pages/HomePage.vue";
+import AboutPage from "./pages/AboutPage.vue";
 
 export default defineComponent({
   props: {
-    // 使用 Props 类型定义 props
-    route: String,
+    route: {
+      type: String,
+      default: "home-page-com",
+    },
   },
-  setup(props:Props) {
-    console.log(props, "props");
-
-    const { route = "home-page-com" } = props;
-    const activeComponent = ref(route); // 初始组件
+  components: {
+    "about-page-com": AboutPage,
+    "home-page-com": HomePage,
+  },
+  setup(props) {
+    const activeComponent = ref(props.route); // 初始组件
 
     const switchComponent = () => {
       activeComponent.value =

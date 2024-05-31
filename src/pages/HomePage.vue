@@ -40,6 +40,9 @@
 import ChildCom from "../components/ChildCom.vue";
 import "@vaadin/button";
 import '@vaadin/grid';
+import '@vaadin/horizontal-layout'
+import  '@vaadin/number-field'
+import  '@vaadin/text-field'
 
 interface Item {
   name: string;
