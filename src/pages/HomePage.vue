@@ -1,16 +1,27 @@
 <template>
-  <h2>this is home page also is an Web Component</h2>
+  <h2>this is home page also is a Web Component</h2>
   <child-com :title="title" />
+
   <!-- 表单筛选部分 -->
-  <vaadin-horizontal-layout theme="spacing" class="filter-bar">
-    <vaadin-text-field label="Name" v-model="filters.name"></vaadin-text-field>
+  <vaadin-horizontal-layout
+    theme="spacing"
+    class="filter-bar"
+    style="margin-bottom: 16px; display: flex; align-items: flex-end"
+  >
+    <vaadin-text-field
+      label="Name"
+      :value="filters.name"
+      @input="updateName"
+    ></vaadin-text-field>
     <vaadin-number-field
       label="Min Age"
-      v-model="filters.minAge"
+      :value="filters.minAge"
+      @input="updateMinAge"
     ></vaadin-number-field>
     <vaadin-number-field
       label="Max Age"
-      v-model="filters.maxAge"
+      :value="filters.maxAge"
+      @input="updateMaxAge"
     ></vaadin-number-field>
     <vaadin-button theme="primary" @click="applyFilters"
       >Apply Filters</vaadin-button
@@ -39,25 +50,30 @@
 <script lang="ts" setup>
 import ChildCom from "../components/ChildCom.vue";
 import "@vaadin/button";
-import '@vaadin/grid';
-import '@vaadin/horizontal-layout'
-import  '@vaadin/number-field'
-import  '@vaadin/text-field'
+import "@vaadin/grid";
+import "@vaadin/horizontal-layout";
+import "@vaadin/number-field";
+import "@vaadin/text-field";
+import { ref, computed } from "vue";
 
 interface Item {
   name: string;
   age: number;
   email: string;
 }
-import { ref, computed } from "vue";
+
 const title = ref(
   "I am a component-type Web Component, and my parent page is the Home Page."
 );
 
-const filters = ref({
+const filters = ref<{
+  name: string;
+  minAge: number | null;
+  maxAge: number | null;
+}>({
   name: "",
-  minAge: null as number | null,
-  maxAge: null as number | null,
+  minAge: null,
+  maxAge: null,
 });
 
 const items = ref<Item[]>([]);
@@ -88,6 +104,7 @@ const totalPages = computed(() => {
 });
 
 const applyFilters = () => {
+  console.log("filters", filters.value);
   currentPage.value = 1; // Reset to first page when filters are applied
 };
 
@@ -103,6 +120,20 @@ const nextPage = () => {
   }
 };
 
+const updateName = (e: Event) => {
+  filters.value.name = (e.target as HTMLInputElement).value;
+};
+
+const updateMinAge = (e: Event) => {
+  const value = (e.target as HTMLInputElement).value;
+  filters.value.minAge = value ? parseInt(value) : null;
+};
+
+const updateMaxAge = (e: Event) => {
+  const value = (e.target as HTMLInputElement).value;
+  filters.value.maxAge = value ? parseInt(value) : null;
+};
+
 // 生成大量数据
 for (let i = 1; i <= 100; i++) {
   items.value.push({
@@ -112,26 +143,3 @@ for (let i = 1; i <= 100; i++) {
   });
 }
 </script>
-
-<style scoped>
-.filter-bar {
-  margin-bottom: 16px;
-  display: flex;
-  align-items: flex-end;
-}
-
-.data-grid {
-  height: 400px;
-  margin-bottom: 16px;
-}
-
-.pagination-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pagination-bar span {
-  margin: 0 8px;
-}
-</style>../components/child.vue

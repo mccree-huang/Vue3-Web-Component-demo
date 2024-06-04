@@ -6,16 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build-wc": "vite build --target wc --outDir dist/wc",
     "preview": "vite preview"
   },
   "dependencies": {
     "@vaadin/vaadin": "^24.3.12",
     "@vaadin/vaadin-lumo-styles": "^24.3.13",
+    "vite-plugin-css-injected-by-js": "^3.5.1",
     "vue": "^3.4.21"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/web-component-wrapper": "^1.3.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-compression": "^0.5.1",

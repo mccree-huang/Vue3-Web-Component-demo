@@ -3,16 +3,16 @@
 </template>
 
 <script lang="ts">
+import './style.css'
 import { defineComponent, ref } from "vue";
 import HomePage from "./pages/HomePage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 import PageNotFound from "./pages/PageNotFound.vue";
-
 export default defineComponent({
   props: {
     route: {
       type: String,
-      default: "page-not-found",
+      default: "home-page-com",
     },
   },
   components: {
