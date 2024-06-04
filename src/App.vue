@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts">
-import './style.css'
 import { defineComponent, ref } from "vue";
 import HomePage from "./pages/HomePage.vue";
 import AboutPage from "./pages/AboutPage.vue";
