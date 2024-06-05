@@ -1,33 +1,15 @@
 <template>
   <h2>this is home page also is a Web Component</h2>
   <child-com :title="title" />
-
   <!-- 表单筛选部分 -->
-  <vaadin-horizontal-layout
-    theme="spacing"
-    class="filter-bar"
-    style="margin-bottom: 16px; display: flex; align-items: flex-end"
-  >
-    <vaadin-text-field
-      label="Name"
-      :value="filters.name"
-      @input="updateName"
-    ></vaadin-text-field>
-    <vaadin-number-field
-      label="Min Age"
-      :value="filters.minAge"
-      @input="updateMinAge"
-    ></vaadin-number-field>
-    <vaadin-number-field
-      label="Max Age"
-      :value="filters.maxAge"
-      @input="updateMaxAge"
-    ></vaadin-number-field>
-    <vaadin-button theme="primary" @click="applyFilters"
-      >Apply Filters</vaadin-button
-    >
+  <vaadin-horizontal-layout theme="spacing" class="filter-bar">
+    <vaadin-text-field label="Name" :value="filters.name" @input="updateName"></vaadin-text-field>
+    <vaadin-number-field label="Min Age" :value="filters.minAge" @input="updateMinAge"></vaadin-number-field>
+    <vaadin-number-field label="Max Age" :value="filters.maxAge" @input="updateMaxAge"></vaadin-number-field>
+    <vaadin-date-picker label="Start date"></vaadin-date-picker>
+    <vaadin-button theme="primary" @click="applyFilters">Apply Filters</vaadin-button>
+    <vaadin-button theme="primary" @click="handleOpenDialog">open Dialog</vaadin-button>
   </vaadin-horizontal-layout>
-
   <!-- 表格部分 -->
   <vaadin-grid :items="paginatedItems" class="data-grid">
     <vaadin-grid-column path="name" header="Name"></vaadin-grid-column>
@@ -37,23 +19,25 @@
 
   <!-- 分页部分 -->
   <div class="pagination-bar">
-    <vaadin-button @click="prevPage" :disabled="currentPage === 1"
-      >Previous</vaadin-button
-    >
+    <vaadin-button @click="prevPage" :disabled="currentPage === 1">Previous</vaadin-button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <vaadin-button @click="nextPage" :disabled="currentPage === totalPages"
-      >Next</vaadin-button
-    >
+    <vaadin-button @click="nextPage" :disabled="currentPage === totalPages">Next</vaadin-button>
   </div>
+
+  <vaadin-confirm-dialog header='Delete "Report Q4"?' cancel-button-visible confirm-text="Delete"
+    confirm-theme="error primary" .opened="dialogOpened" @confirm="onConfirm" @cancel="() => { dialogOpened = false }">
+    There are unsaved changes. Do you want to discard or save them?
+  </vaadin-confirm-dialog>
 </template>
 
 <script lang="ts" setup>
-import ChildCom from "../components/ChildCom.vue";
 import "@vaadin/button";
 import "@vaadin/grid";
 import "@vaadin/horizontal-layout";
 import "@vaadin/number-field";
 import "@vaadin/text-field";
+import "@vaadin/confirm-dialog";
+import "@vaadin/date-picker"
 import { ref, computed } from "vue";
 
 interface Item {
@@ -65,6 +49,13 @@ interface Item {
 const title = ref(
   "I am a component-type Web Component, and my parent page is the Home Page."
 );
+
+const dialogOpened = ref(false);
+
+
+const onConfirm = () => {
+  dialogOpened.value = false;
+};
 
 const filters = ref<{
   name: string;
@@ -104,7 +95,6 @@ const totalPages = computed(() => {
 });
 
 const applyFilters = () => {
-  console.log("filters", filters.value);
   currentPage.value = 1; // Reset to first page when filters are applied
 };
 
@@ -142,4 +132,23 @@ for (let i = 1; i <= 100; i++) {
     email: `name${i}@example.com`,
   });
 }
+
+const handleOpenDialog = () => {
+  dialogOpened.value = true;
+}
 </script>
+
+<style scoped>
+.filter-bar {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.pagination-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+</style>

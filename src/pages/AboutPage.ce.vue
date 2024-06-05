@@ -4,7 +4,6 @@
 </template>
 
 <script lang="ts" setup>
-import ChildCom from "../components/ChildCom.vue";
 import { ref } from "vue";
 const title = ref("I am a component-type Web Component, and my parent page is the About Page.");
 </script>

@@ -5,18 +5,18 @@ export default defineConfig({
   plugins: [vue({
     template: {
       compilerOptions: {
-        // 将所有带短横线的标签名都视为自定义元素
+        // 将vaadin-开头的标签作为自定义元素，避免控制台告警
         isCustomElement: (tag) => tag.includes('vaadin-')
       }
     }
   }), cssInjectedByJsPlugin()],
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
-  },
+  // build: {
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks: undefined,
+  //     },
+  //   },
+  // },
 })
 
 
