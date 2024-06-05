@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "build-wc": "vite build --target wc --outDir dist/wc",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-http-server": "http-server ./dist/assets/ -p 5500 -g -c-1"
   },
   "dependencies": {
     "@vaadin/vaadin": "^24.3.12",
