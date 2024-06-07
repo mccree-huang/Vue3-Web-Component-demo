@@ -1,9 +1,12 @@
 <template>
-  <component :is="activeComponent" />
+  <div id="my-app">
+    <component :is="activeComponent" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import '@/assets/common.css'
 
 export default defineComponent({
   name: "App",
